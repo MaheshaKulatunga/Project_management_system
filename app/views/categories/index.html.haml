@@ -1,0 +1,27 @@
+= stylesheet_link_tag    "application", media: :all
+-# Keeps the footer at the bottom of the page.
+- @sticky_footer=true
+- content_for :title, "Categories"
+-# Table to show the available categories
+.categoryContainer
+  %h1 Listing categories
+
+  %table
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @categories.each do |category|
+        %tr
+          %td= category.name
+          %td= link_to 'Show', category
+          %td= link_to 'Edit', edit_category_path(category)
+          %td= link_to 'Destroy', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Category', new_category_path

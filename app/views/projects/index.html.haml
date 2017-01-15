@@ -1,0 +1,101 @@
+- content_for :title, "Projects"
+= stylesheet_link_tag    "application", media: :all
+= stylesheet_link_tag    "home", media: :all
+
+.page-header
+  %h1.top Sheffield Water Centre
+  %h1 All projects
+
+%div.categories_box.panel.panel-primary
+  %ul.nav
+    %li
+    %li.dropdown
+      %a.hidden-md.hidden-sm.hidden-xs.glyphicon.glyphicon-filter.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+        Categories
+      %a.hidden-lg.hidden-xl.glyphicon.glyphicon-th-list.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+        %b.caret
+      %ul.dropdown-menu{"role" => "menu"}
+        %li
+          -# Show all projects
+          = link_to 'All projects', :home
+          -# Show projects with the category Zero Failures
+          = link_to 'Zero Failures', :zero_failures
+          -# Show projects with the category Resource Recovery and Efficiency.
+          = link_to 'Resource Recovery and Efficiency', :rre
+          -# Show projects with the category Buried Infrastructure Performance.
+          = link_to 'Buried Infrastructure Performance', :bip
+
+-# Display Information about the project 
+- @projects.reverse.each do |project|
+  %div.container.buffered-top
+    - if project.subcategory.name == 'Economic'
+      %div.panel.panel-success
+        %div.panel-heading
+          %p= project.subcategory.name
+        %div.panel-body
+          %table
+            %tr
+              %td.title Project category:
+              %td= project.category.name
+            %tr
+              %td.title Project number:
+              %td= project.project_number
+            %tr
+              %td.title Project title:
+              %td= project.project_title
+            %tr
+              %td.title Aims:
+              %td=truncate( project.aims, length:250)
+            %tr
+              %td.title Target members:
+              %td= project.would_do_project
+            %tr
+              %td.showButton= link_to 'Show', project, class: "show-flash btn btn-default"
+
+    - if project.subcategory.name == 'Technology'
+      %div.panel.panel-danger
+        %div.panel-heading
+          %p= project.subcategory.name
+        %div.panel-body
+          %table
+            %tr
+              %td.title Project category:
+              %td= project.category.name
+            %tr
+              %td.title Project number:
+              %td= project.project_number
+            %tr
+              %td.title Project title:
+              %td= project.project_title
+            %tr
+              %td.title Aims:
+              %td=truncate( project.aims, length:250)
+            %tr
+              %td.title Would do project:
+              %td= project.would_do_project
+            %tr
+              %td.showButton= link_to 'Show', project, class: "show-flash btn btn-default"
+
+    - if project.subcategory.name == 'Knowledge'
+      %div.panel.panel-info
+        %div.panel-heading
+          %p= project.subcategory.name
+        %div.panel-body
+          %table
+            %tr
+              %td.title Project category:
+              %td= project.category.name
+            %tr
+              %td.title Project number:
+              %td= project.project_number
+            %tr
+              %td.title Project title:
+              %td= project.project_title
+            %tr
+              %td.title Aims:
+              %td=truncate( project.aims, length:250)
+            %tr
+              %td.title Would do project:
+              %td= project.would_do_project
+            %tr
+              %td.showButton= link_to 'Show', project, class: "show-flash btn btn-default"

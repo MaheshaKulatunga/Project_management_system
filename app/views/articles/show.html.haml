@@ -1,0 +1,21 @@
+-  content_for :title, @article.title
+= stylesheet_link_tag    "application", media: :all
+= stylesheet_link_tag    "story", media: :all
+
+%div.container.buffered-top
+  -# Section to show the header
+  .container
+    .page-header
+      .jumbotron.jtron
+        %h1
+          %b.title
+          = @article.title
+          -#show the time the article was created.
+          %p.text.time=@article.created_at
+
+      .col-xs-12.col-sm-6.col-md-8.move
+        .image.col-sm-12
+          =image_tag @article.avatar.url(:medium),:class => "style_image img-rounded img-responsive"
+          .caption
+            %br
+            %p.text=@article.text

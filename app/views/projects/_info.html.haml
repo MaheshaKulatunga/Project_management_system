@@ -1,0 +1,61 @@
+-# Information about the project.
+%p
+  %b Project number:
+  = @project.project_number
+%p
+  %b Project description:
+  = @project.project_description
+%p
+  %b Priority & duration?
+  - if @project.priority_duration.present? == true
+    = @project.priority_duration
+  -else
+    .empty-field Unspecified
+%p
+  %b Aims:
+  - if @project.aims.present? == true
+    = @project.aims
+  -else
+    .empty-field Unspecified
+%p
+  %b Why is this project important?
+  - if @project.why_important.present? == true
+    = @project.why_important
+  -else
+    .empty-field Unspecified
+%p
+  %b Who would do this project?
+  - if @project.would_do_project.present? == true
+    = @project.would_do_project
+  -else
+    .empty-field Unspecified
+%p
+  %b Funding:
+  - if @project.funding.present? == true
+    = @project.funding
+  -else
+    .empty-field Funding required
+%p
+  %b Time scale (Years):
+  - if @project.time_scale.present? == true
+    = @project.time_scale
+  -else
+    .empty-field Unspecified
+%p
+  %b Benefits to industry:
+  - if @project.benefits.present? == true
+    = @project.benefits
+  -else
+    .empty-field Unspecified
+%p
+  %b Notes on Methodology:
+  - if @project.methodology.present? == true
+    = @project.methodology
+  -else
+    .empty-field Unspecified
+%p
+  %b Volunteers:
+  - if @project.volunteers.present? == true
+    = @project.volunteers
+  -else
+    .empty-field Needs Volunteers!

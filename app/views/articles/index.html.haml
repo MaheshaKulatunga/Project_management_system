@@ -1,0 +1,22 @@
+-  content_for :title, "Recent News"
+= stylesheet_link_tag    "application", media: :all
+= stylesheet_link_tag    "news", media: :all
+
+
+%div.container.buffered-top
+    %h1
+        Recent News
+    -# List news article in a reverse order to show last article first.
+    - @articles.reverse.each do |article|
+        .col-xs-12.col-sm-6.col-md-8.move
+            %h3= article.title
+            %p.text.time=article.created_at
+            .image.col-sm-12
+                =image_tag article.avatar.url(:medium),:class => "style_image img-rounded img-responsive"
+                .caption
+                    %br
+                    -#Show the fist 350 characters of the article
+                    %p.text=truncate( article.text, length:350)
+                    -#button to show the full article.
+                    %div.button
+                        = link_to 'Read More', article_path(article),:class=> "btn btn-default btn-sm active"
